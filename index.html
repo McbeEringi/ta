@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og:http://ogp.me/ns#">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-145066191-2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-145066191-2');</script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>McbeEringi TA.js</title>
+	<meta name="description" content="A super tiny textarea code editor.">
+	<link rel="shortcut icon" type="image/svg+xml" href="img/icon.svg">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="McbeEringi TA.js">
+	<meta property="og:description" content="A super tiny textarea code editor.">
+	<meta property="og:url" content="https://mcbeeringi.github.io/ta/">
+	<meta property="og:image" content="https://mcbeeringi.github.io/ta/img/icon.png">
+	<link rel="apple-touch-icon" href="img/icon.png">
+	<meta name="theme-color" content="#214"/>
+</head>
+<body>
+	<style>
+		:root,textarea{background-color:#222;color:#fff;font-family:sans-serif;}
+		body{margin:0;}:link,:visited{color:#888;}
+		hr{border:0;background-color:#8888;height:2px;border-radius:2px;;}
+		textarea{border:2px solid #8888;border-radius:4px;padding:4px;resize:none;font-family:monospace;}
+		.title{min-height:100vh;}img{width:100vmin;height:100vmin;}img,img+div{display:inline-block;vertical-align:middle;}
+		#ta{width:100%;white-space:pre;}
+	</style>
+	<div class="title">
+		<img src="img/icon.svg" alt="TA.js"><div>
+			<h1 style="display:inline;font-size:700%;">TA.js</h1><br>
+			A super tiny textarea code editor<br>
+			<a href="https://github.com/mcbeeringi/ta">GitHub</a>
+		</div>
+	</div>
+	<hr>
+	<textarea id="ta" spellcheck="false"></textarea>
+	<script src="ta.js"></script>
+	<script>
+		TA.editor(ta);
+		Promise.all(['README.md','ta.js'].map(async x=>await(await fetch(x)).text())).then(x=>{ta.value=x.join('\n\n');TA.ah(ta);});
+	</script>
+</body>
+</html>
