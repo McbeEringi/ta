@@ -11,7 +11,6 @@ const TA={
 				...TA.brkt.map(y=>[[y[0],()=>cs(S,ins(x.value.slice(S,E)+y[1]))],[y[1],()=>{if(x.value[S]==y[1])cs(S+1,pd());}]]).flat(),
 				...TA.quot.map(y=>[y,()=>{if(x.value[S]==y)cs(S+1,pd());if(x.value[S-1]!=y)cs(S,ins(x.value.slice(S,E)+y));}])
 			])
-		})[e.key]||Array)();
-		if(e.defaultPrevented)TA.ah(x);
+		})[e.key]||Array)();if(e.defaultPrevented)TA.ah(x);
 	}});}
 };
