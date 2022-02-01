@@ -1,6 +1,6 @@
 # TA.js
-A super tiny textarea code editor  
-![](img/icon.svg)
+A super tiny textarea code editor
+![icon](img/icon.svg)
 ## features
 - Auto height
 - Tab insert
@@ -12,11 +12,11 @@ A super tiny textarea code editor
 	updates textarea height according to the content.
 - **TA.sizer( *HTMLTextAreaElement* ) -> undefined**  
 	adds TA.ah() to input eventlistner and execute instant.  
-	use this if you only need auto height feature. 
+	use this if you only need auto height feature.
 - **TA.editor( *HTMLTextAreaElement* ) -> undefined**  
 	setup the editor. TA.sizer() also executed.
 ### properties
 - **TA.brkt=['()','{}','[]','「」','『』','\'','"','`']**  
 	defines bracket pairs and quotations.
 ## LICENSE
-MIT License. see [LICENSE](LICENSE)  
+MIT License. see [LICENSE](LICENSE)

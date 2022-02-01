@@ -20,7 +20,7 @@
 	<style>
 		:root,textarea{background-color:#222;color:#fff;font-family:sans-serif;}
 		body{margin:0;}:link,:visited{color:#888;}
-		hr{border:0;background-color:#8888;height:2px;border-radius:2px;;}
+		hr{border:0;background-color:#8888;height:2px;border-radius:2px;}
 		textarea{border:2px solid #8888;border-radius:4px;padding:4px;resize:none;font-family:monospace;}
 		.title{min-height:100vh;}img{width:100vmin;height:100vmin;}img,img+div{display:inline-block;vertical-align:middle;}
 		#ta{width:100%;white-space:pre;}
@@ -28,7 +28,7 @@
 	<div class="title">
 		<img src="img/icon.svg" alt="TA.js"><div>
 			<h1 style="display:inline;font-size:700%;">TA.js</h1><br>
-			A super tiny textarea code editor<br>
+			A <span id="byte">super tiny</span> textarea code editor<br>
 			<a href="https://github.com/mcbeeringi/ta">GitHub</a>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 	<script src="ta.js"></script>
 	<script>
 		TA.editor(ta);
-		Promise.all(['README.md','ta.js'].map(async x=>await(await fetch(x)).text())).then(x=>{ta.value=x.join('\n\n');TA.ah(ta);});
+		Promise.all(['README.md','ta.js'].map(async x=>await(await fetch(x)).text())).then(x=>{ta.value=x.join('\n\n');byte.textContent=`${new Blob([x[1]]).size} bytes`;TA.ah(ta);});
 	</script>
 </body>
 </html>
