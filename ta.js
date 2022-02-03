@@ -1,13 +1,13 @@
 const TA={
 	brkt:['()','{}','[]','「」','『』',...'\'"`'],
-	ah(x){Object.assign(x.style,{boxSizing:'border-box',marginBottom:x.style.height,height:''}).height=x.offsetHeight+x.scrollHeight-x.clientHeight+'px';x.style.marginBottom='';},
+	ah:x=>Object.assign(Object.assign(x.style,{boxSizing:'border-box',marginBottom:x.style.height,height:''}),{height:x.offsetHeight+x.scrollHeight-x.clientHeight+'px',marginBottom:''}),
 	sizer(x){TA.ah(x);x.addEventListener('input',()=>TA.ah(x));},
 	editor(x){TA.sizer(x);x.addEventListener('keydown',e=>{if(!e.isComposing){
-		const S=x.selectionStart,E=x.selectionEnd,pd=()=>e.preventDefault(),cs=(y,z=y)=>{x.selectionStart=y;x.selectionEnd=z;},
-			ins=y=>{x.value=x.value.slice(0,S)+y+x.value.slice(E);},del=()=>{if(S==E&&(TA.brkt.includes(x.value.slice(S-1,S+1))||(x.value[S-1]==x.value[S]&&TA.brkt.includes(x.value[S]))))cs(S-1,E+1);};
+		const{selectionStart:S,selectionEnd:E,value:V}=x,P=()=>e.preventDefault(),C=(y,z=y)=>{x.selectionStart=y;x.selectionEnd=z;},
+			I=y=>{x.value=V.slice(0,S)+y+V.slice(E);},D=()=>{if(S==E&&(TA.brkt.includes(V.slice(S-1,S+1))||(V[S-1]==V[S]&&TA.brkt.includes(V[S]))))C(S-1,E+1);};
 		(({
-			Tab(){pd();ins('	');cs(S+1);},Backspace:del,Delete:del,Enter(){pd();const s='\n'+x.value.slice(0,S).match(/([	 ]*).*$/)[1]+(TA.brkt.some(y=>x.value[S-1]==y[0])?'	':'');ins(s);cs(S+s.length);},
-			...Object.fromEntries(TA.brkt.map(y=>y[1]?[[y[0],()=>cs(S,ins(x.value.slice(S,E)+y[1]))],[y[1],()=>{if(x.value[S]==y[1])cs(S+1,pd());}]]:[[y,()=>{if(x.value[S]==y)cs(S+1,pd());if(x.value[S-1]!=y)cs(S,ins(x.value.slice(S,E)+y));}]]).flat())
+			Tab(){C(S+1,I('	',P()));},Backspace:D,Dete:D,Enter(){const s='\n'+V.slice(0,S).match(/([	 ]*).*$/)[1]+(TA.brkt.some(y=>V[S-1]==y[0])?'	':'');C(S+s.length,I(s,P()));},
+			...Object.fromEntries(TA.brkt.map(y=>y[1]?[[y[0],()=>C(S,I(V.slice(S,E)+y[1]))],[y[1],()=>{if(V[S]==y[1])C(S+1,P());}]]:[[y,()=>{if(V[S]==y)C(S+1,P());if(V[S-1]!=y)C(S,I(V.slice(S,E)+y));}]]).flat())
 		})[e.key]||Array)();if(e.defaultPrevented)TA.ah(x);
 	}});}
 };
