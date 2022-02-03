@@ -1,6 +1,6 @@
 const TA={
 	brkt:['()','{}','[]','「」','『』',...'\'"`'],
-	ah:x=>Object.assign(Object.assign(x.style,{boxSizing:'border-box',marginBottom:x.style.height,height:''}),{height:x.offsetHeight+x.scrollHeight-x.clientHeight+'px',marginBottom:''}),
+	ah(x){Object.assign(x.style,{boxSizing:'border-box',marginBottom:x.style.height,height:''}).height=x.offsetHeight+x.scrollHeight-x.clientHeight+'px';x.style.marginBottom='';},
 	sizer(x){TA.ah(x);x.addEventListener('input',()=>TA.ah(x));},
 	editor(x){TA.sizer(x);x.addEventListener('keydown',e=>{if(!e.isComposing){
 		const{selectionStart:S,selectionEnd:E,value:V}=x,P=()=>e.preventDefault(),C=(y,z=y)=>{x.selectionStart=y;x.selectionEnd=z;},
