@@ -1,5 +1,5 @@
 const TA={
-	brkt:['()','{}','[]','「」','『』',...'\'"`'],
+	brkt:['()','{}','[]',...'\'"`'],
 	ah(x){Object.assign(x.style,{boxSizing:'border-box',marginBottom:x.style.height,height:''}).height=x.offsetHeight+x.scrollHeight-x.clientHeight+'px';x.style.marginBottom='';},
 	sizer(x){TA.ah(x);x.addEventListener('input',()=>TA.ah(x));},
 	editor(x){TA.sizer(x);x.addEventListener('keydown',e=>{if(!e.isComposing){
