@@ -16,7 +16,7 @@ A super tiny textarea code editor
 - **TA.editor( *HTMLTextAreaElement* ) -> undefined**  
 	setup the editor. TA.sizer() also executed.
 ### properties
-- **TA.brkt=['()','{}','[]','「」','『』','\'','"','`']**  
+- **TA.brkt=['()','{}','[]','\'','"','`']**  
 	defines bracket pairs and quotations.
 ## LICENSE
 MIT License. see [LICENSE](LICENSE)
