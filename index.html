@@ -61,7 +61,7 @@
 		Promise.all(['ta+.mjs'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
 			edt.value=ta_.value=x.join('\n\n\n');TA.ah(ta_);TA.ah(edt);
 			(edt.oninput=()=>(console.log(edt_.textContent=edt.value),Prism.highlightElement(edt_)))();
-			edt.addEventListner('scroll',()=>edt_.style.left=8-edt.scrollLeft+'px',{passive:1});
+			edt.addEventListener('scroll',()=>edt_.style.left=8-edt.scrollLeft+'px',{passive:1});
 		});
 </script>
 </body>
