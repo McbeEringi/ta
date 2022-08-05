@@ -54,13 +54,15 @@
 	<script type="module">
 		import TA from'./ta+.mjs'
 		TA.editor(ta_);
-		Promise.all(['ta+.mjs'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
-			ta_.value=x.join('\n\n\n');TA.ah(ta_);
-		});
+
 		Function(await(await fetch('https://cdn.jsdelivr.net/npm/prismjs/prism.min.js')).text())();
 		TA.editor(edt);
-		(edt.oninput=()=>(console.log(edt_.textContent=edt.value),Prism.highlightElement(edt_)))();
-		edt.onscroll=()=>{edt_.style.left=8-edt.scrollLeft+'px';}
-	</script>
+
+		Promise.all(['ta+.mjs'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
+			edt.value=ta_.value=x.join('\n\n\n');TA.ah(ta_);TA.ah(edt);
+			(edt.oninput=()=>(console.log(edt_.textContent=edt.value),Prism.highlightElement(edt_)))();
+			edt.addEventListner('scroll',()=>edt_.style.left=8-edt.scrollLeft+'px',{passive:1});
+		});
+</script>
 </body>
 </html>
