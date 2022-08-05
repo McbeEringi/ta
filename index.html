@@ -17,12 +17,17 @@
 	<meta name="theme-color" content="#214"/>
 
 	<link rel="stylesheet" href="https://mcbeeringi.github.io/src/style.css">
+	<link href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes/themes/prism-one-dark.min.css" rel="stylesheet">
 </head>
 <body>
 	<style>
 		body{margin:0;}:link,:visited{color:#888;}
 		.title{min-height:100vh;}img{width:100vmin;height:100vmin;}img,img+div{display:inline-block;vertical-align:middle;}
 		textarea{width:100%;white-space:pre;font-family:monospace !important;}
+		.editor{position:relative;overflow:hidden;box-sizing:border-box;padding:8px;}
+		.editor>textarea::selection{color:#0000;background-color:#48f8;}
+		.editor>div{position:absolute;white-space:pre;font-family:monospace;pointer-events:none;}
+		.editor>textarea{border:0;padding:0;margin:0;resize:none;outline:0;color:#0000;background-color:#0000;caret-color:#fff;}
 	</style>
 	<div class="title">
 		<img src="img/icon.svg" alt="TA.js"><div>
@@ -34,6 +39,11 @@
 	<hr>
 	<h2>TA.js</h2><textarea id="ta" spellcheck="false" class="input"></textarea><hr>
 	<h2>TA+.mjs</h2><textarea id="ta_" spellcheck="false" class="input"></textarea><hr>
+	<h2>with PrismJS</h2>
+	<div class="editor">
+		<div id="edt_" class="language-js"></div>
+		<textarea id="edt" spellcheck="false"></textarea>
+	</div><hr>
 	<script src="ta.js"></script>
 	<script>
 		TA.editor(ta);
@@ -47,6 +57,10 @@
 		Promise.all(['ta+.mjs'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
 			ta_.value=x.join('\n\n\n');TA.ah(ta_);
 		});
+		Function(await(await fetch('https://cdn.jsdelivr.net/npm/prismjs/prism.min.js')).text())();
+		TA.editor(edt);
+		(edt.oninput=()=>(console.log(edt_.textContent=edt.value),Prism.highlightElement(edt_)))();
+		edt.onscroll=()=>{edt_.style.left=8-edt.scrollLeft+'px';}
 	</script>
 </body>
 </html>
