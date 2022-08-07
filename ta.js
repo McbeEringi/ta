@@ -1,4 +1,4 @@
-const TA={
+self.TA={
 	brkt:['()','{}','[]',...'\'"`'],
 	ah(w){Object.assign(w.style,{boxSizing:'border-box',marginBottom:w.style.height,height:''}).height=w.offsetHeight+w.scrollHeight-w.clientHeight+1+'px';w.style.marginBottom='';},
 	sizer(w){TA.ah(w);w.addEventListener('input',_=>TA.ah(w));},
