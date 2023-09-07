@@ -18,7 +18,6 @@
 
 	<script src="https://mcbeeringi.github.io/src/style.js" async></script>
 	<link rel="stylesheet" href="https://mcbeeringi.github.io/src/style.css">
-	<link href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes/themes/prism-one-dark.min.css" rel="stylesheet">
 </head>
 <body>
 	<style>
@@ -38,32 +37,14 @@
 		</div>
 	</div>
 	<hr>
-	<h2>TA.js</h2><textarea id="ta" spellcheck="false" class="zab"></textarea><hr>
-	<h2>TA+.mjs</h2><textarea id="ta_" spellcheck="false" class="zab"></textarea><hr>
-	<h2>with PrismJS</h2>
-	<div class="editor">
-		<div id="edt_" class="language-js"></div>
-		<textarea id="edt" spellcheck="false"></textarea>
-	</div><hr>
-	<script src="ta.js"></script>
-	<script>
-		TA.editor(ta);
-		Promise.all(['README.md','ta.js'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
-			ta.value=x.join('\n\n\n');byte.textContent=`${(await(await fetch('ta.js')).arrayBuffer()).byteLength} bytes`;TA.ah(ta);
-		});
-	</script>
+	<h2>TA.js</h2><textarea id="ta" spellcheck="false" class="zab"></textarea>
 	<script type="module">
-		import TA from'./ta+.mjs'
-		TA.editor(ta_);
-
-		Function(await(await fetch('https://cdn.jsdelivr.net/npm/prismjs/prism.min.js')).text())();
-		TA.editor(edt);
-
-		Promise.all(['ta+.mjs'].map(async x=>`///// ${x} /////\n\n${await(await fetch(x)).text()}`)).then(async x=>{
-			edt.value=ta_.value=x.join('\n\n\n');TA.ah(ta_);TA.ah(edt);
-			(edt.oninput=()=>(console.log(edt_.textContent=edt.value),Prism.highlightElement(edt_)))();
-			edt.addEventListener('scroll',()=>edt_.style.left=8-edt.scrollLeft+'px',{passive:1});
-		});
+		import TA from'./ta.mjs'
+		TA.editor(ta);
+		const s=await(await fetch('ta.mjs')).text();
+		byte.textContent=s.length+' bytes';
+		ta.value=await(await fetch('README.md')).text()+'\n\n\n\n'+s;
+		TA.ah(ta);
 </script>
 </body>
 </html>
